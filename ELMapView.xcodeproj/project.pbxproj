@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1A34C5C2D0C75F69EC4A1C78 /* Pods_ELMapView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F565F8393FF4D98D2C25C968 /* Pods_ELMapView.framework */; };
 		D4170B8020585C81000EBC6C /* LocationSearchTableTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4170B7F20585C81000EBC6C /* LocationSearchTableTableViewController.swift */; };
 		D4170B8220586CEA000EBC6C /* Restaurant.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4170B8120586CEA000EBC6C /* Restaurant.swift */; };
 		D4170B86205963D3000EBC6C /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4170B85205963D3000EBC6C /* WebViewController.swift */; };
@@ -21,6 +22,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1F17C1F87B741DA4C764721E /* Pods-ELMapView.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ELMapView.release.xcconfig"; path = "Pods/Target Support Files/Pods-ELMapView/Pods-ELMapView.release.xcconfig"; sourceTree = "<group>"; };
 		D4170B7F20585C81000EBC6C /* LocationSearchTableTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSearchTableTableViewController.swift; sourceTree = "<group>"; };
 		D4170B8120586CEA000EBC6C /* Restaurant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Restaurant.swift; sourceTree = "<group>"; };
 		D4170B85205963D3000EBC6C /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
@@ -34,6 +36,8 @@
 		D462357A20583BEE00E21937 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D462357C20583BEE00E21937 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D462358220583DA700E21937 /* turnToTechLOGO.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = turnToTechLOGO.png; path = ../../turnToTechLOGO.png; sourceTree = "<group>"; };
+		F565F8393FF4D98D2C25C968 /* Pods_ELMapView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ELMapView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FA79A6E0EFDDD198058AF729 /* Pods-ELMapView.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ELMapView.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ELMapView/Pods-ELMapView.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -41,17 +45,37 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1A34C5C2D0C75F69EC4A1C78 /* Pods_ELMapView.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7F3926EB25C3F05FE9E578FA /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				FA79A6E0EFDDD198058AF729 /* Pods-ELMapView.debug.xcconfig */,
+				1F17C1F87B741DA4C764721E /* Pods-ELMapView.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		A4BD8AFEB2F4457C3F37B4B5 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F565F8393FF4D98D2C25C968 /* Pods_ELMapView.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		D462356120583BEE00E21937 = {
 			isa = PBXGroup;
 			children = (
 				D462356C20583BEE00E21937 /* ELMapView */,
 				D462356B20583BEE00E21937 /* Products */,
+				7F3926EB25C3F05FE9E578FA /* Pods */,
+				A4BD8AFEB2F4457C3F37B4B5 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -67,12 +91,10 @@
 			isa = PBXGroup;
 			children = (
 				D462356D20583BEE00E21937 /* AppDelegate.swift */,
-				D462356F20583BEE00E21937 /* ViewController.swift */,
-				D4170B85205963D3000EBC6C /* WebViewController.swift */,
-				D4170B8720596C3D000EBC6C /* Reachability.swift */,
-				D4170B8120586CEA000EBC6C /* Restaurant.swift */,
+				D4A7B65F2059872700D491B3 /* Models */,
+				D4A7B65E2059870C00D491B3 /* View Controllers */,
+				D4A7B65D205986FD00D491B3 /* Network */,
 				D462357120583BEE00E21937 /* Main.storyboard */,
-				D4170B7F20585C81000EBC6C /* LocationSearchTableTableViewController.swift */,
 				D462357720583BEE00E21937 /* Assets.xcassets */,
 				D462357920583BEE00E21937 /* LaunchScreen.storyboard */,
 				D462357C20583BEE00E21937 /* Info.plist */,
@@ -82,6 +104,32 @@
 			path = ELMapView;
 			sourceTree = "<group>";
 		};
+		D4A7B65D205986FD00D491B3 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				D4170B8720596C3D000EBC6C /* Reachability.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		D4A7B65E2059870C00D491B3 /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				D462356F20583BEE00E21937 /* ViewController.swift */,
+				D4170B85205963D3000EBC6C /* WebViewController.swift */,
+				D4170B7F20585C81000EBC6C /* LocationSearchTableTableViewController.swift */,
+			);
+			path = "View Controllers";
+			sourceTree = "<group>";
+		};
+		D4A7B65F2059872700D491B3 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				D4170B8120586CEA000EBC6C /* Restaurant.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -89,9 +137,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = D462357F20583BEE00E21937 /* Build configuration list for PBXNativeTarget "ELMapView" */;
 			buildPhases = (
+				17BDA0BD312EC5E3767822B6 /* [CP] Check Pods Manifest.lock */,
 				D462356620583BEE00E21937 /* Sources */,
 				D462356720583BEE00E21937 /* Frameworks */,
 				D462356820583BEE00E21937 /* Resources */,
+				2575ED202267176902D62A0B /* [CP] Embed Pods Frameworks */,
+				5CD177903A20C6A0BD1BE801 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -149,6 +200,63 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		17BDA0BD312EC5E3767822B6 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-ELMapView-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		2575ED202267176902D62A0B /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-ELMapView/Pods-ELMapView-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ELMapView/Pods-ELMapView-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		5CD177903A20C6A0BD1BE801 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-ELMapView/Pods-ELMapView-resources.sh",
+				"${PODS_ROOT}/GoogleMaps/Maps/Frameworks/GoogleMaps.framework/Resources/GoogleMaps.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleMaps.bundle",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ELMapView/Pods-ELMapView-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		D462356620583BEE00E21937 /* Sources */ = {
@@ -296,6 +404,7 @@
 		};
 		D462358020583BEE00E21937 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = FA79A6E0EFDDD198058AF729 /* Pods-ELMapView.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -311,6 +420,7 @@
 		};
 		D462358120583BEE00E21937 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1F17C1F87B741DA4C764721E /* Pods-ELMapView.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
