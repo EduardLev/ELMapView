@@ -7,15 +7,24 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D4170B8020585C81000EBC6C /* LocationSearchTableTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4170B7F20585C81000EBC6C /* LocationSearchTableTableViewController.swift */; };
+		D4170B8220586CEA000EBC6C /* Restaurant.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4170B8120586CEA000EBC6C /* Restaurant.swift */; };
+		D4170B86205963D3000EBC6C /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4170B85205963D3000EBC6C /* WebViewController.swift */; };
+		D4170B8820596C3D000EBC6C /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4170B8720596C3D000EBC6C /* Reachability.swift */; };
 		D462356E20583BEE00E21937 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D462356D20583BEE00E21937 /* AppDelegate.swift */; };
 		D462357020583BEE00E21937 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D462356F20583BEE00E21937 /* ViewController.swift */; };
 		D462357320583BEE00E21937 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D462357120583BEE00E21937 /* Main.storyboard */; };
 		D462357620583BEE00E21937 /* ELMapView.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D462357420583BEE00E21937 /* ELMapView.xcdatamodeld */; };
 		D462357820583BEE00E21937 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D462357720583BEE00E21937 /* Assets.xcassets */; };
 		D462357B20583BEE00E21937 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D462357920583BEE00E21937 /* LaunchScreen.storyboard */; };
+		D462358320583DA700E21937 /* turnToTechLOGO.png in Resources */ = {isa = PBXBuildFile; fileRef = D462358220583DA700E21937 /* turnToTechLOGO.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		D4170B7F20585C81000EBC6C /* LocationSearchTableTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSearchTableTableViewController.swift; sourceTree = "<group>"; };
+		D4170B8120586CEA000EBC6C /* Restaurant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Restaurant.swift; sourceTree = "<group>"; };
+		D4170B85205963D3000EBC6C /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
+		D4170B8720596C3D000EBC6C /* Reachability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		D462356A20583BEE00E21937 /* ELMapView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ELMapView.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D462356D20583BEE00E21937 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D462356F20583BEE00E21937 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -24,6 +33,7 @@
 		D462357720583BEE00E21937 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D462357A20583BEE00E21937 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D462357C20583BEE00E21937 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D462358220583DA700E21937 /* turnToTechLOGO.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = turnToTechLOGO.png; path = ../../turnToTechLOGO.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,11 +68,16 @@
 			children = (
 				D462356D20583BEE00E21937 /* AppDelegate.swift */,
 				D462356F20583BEE00E21937 /* ViewController.swift */,
+				D4170B85205963D3000EBC6C /* WebViewController.swift */,
+				D4170B8720596C3D000EBC6C /* Reachability.swift */,
+				D4170B8120586CEA000EBC6C /* Restaurant.swift */,
 				D462357120583BEE00E21937 /* Main.storyboard */,
+				D4170B7F20585C81000EBC6C /* LocationSearchTableTableViewController.swift */,
 				D462357720583BEE00E21937 /* Assets.xcassets */,
 				D462357920583BEE00E21937 /* LaunchScreen.storyboard */,
 				D462357C20583BEE00E21937 /* Info.plist */,
 				D462357420583BEE00E21937 /* ELMapView.xcdatamodeld */,
+				D462358220583DA700E21937 /* turnToTechLOGO.png */,
 			);
 			path = ELMapView;
 			sourceTree = "<group>";
@@ -126,6 +141,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D462358320583DA700E21937 /* turnToTechLOGO.png in Resources */,
 				D462357B20583BEE00E21937 /* LaunchScreen.storyboard in Resources */,
 				D462357820583BEE00E21937 /* Assets.xcassets in Resources */,
 				D462357320583BEE00E21937 /* Main.storyboard in Resources */,
@@ -139,7 +155,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D4170B8820596C3D000EBC6C /* Reachability.swift in Sources */,
+				D4170B8220586CEA000EBC6C /* Restaurant.swift in Sources */,
+				D4170B86205963D3000EBC6C /* WebViewController.swift in Sources */,
 				D462357020583BEE00E21937 /* ViewController.swift in Sources */,
+				D4170B8020585C81000EBC6C /* LocationSearchTableTableViewController.swift in Sources */,
 				D462356E20583BEE00E21937 /* AppDelegate.swift in Sources */,
 				D462357620583BEE00E21937 /* ELMapView.xcdatamodeld in Sources */,
 			);
