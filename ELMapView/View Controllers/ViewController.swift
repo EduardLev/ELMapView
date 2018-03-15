@@ -114,9 +114,12 @@ class ViewController: UIViewController {
     
     @IBAction func selectMapTypeValueChanged(_ sender: UISegmentedControl) {
         switch sender.selectedSegmentIndex {
-        case 0: mapView.mapType = MKMapType.standard
-        case 1: mapView.mapType = MKMapType.hybrid
-        case 2: mapView.mapType = MKMapType.satellite
+        case 0: //mapView.mapType = MKMapType.standard
+                googleMapView.mapType = .normal
+        case 1: //mapView.mapType = MKMapType.hybrid
+                googleMapView.mapType = .hybrid
+        case 2: //mapView.mapType = MKMapType.satellite
+                googleMapView.mapType = .satellite
         default: break
         }
     }
@@ -194,6 +197,7 @@ extension ViewController: HandleMapSearch {
     
     func dropGooglePinZoomIn(place: GooglePlace) {
         let marker = PlaceMarker(place: place)
+        self.googleMapView.clear()
         marker.map = self.googleMapView
     }
 }
