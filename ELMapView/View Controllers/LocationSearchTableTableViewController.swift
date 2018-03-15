@@ -8,11 +8,18 @@
 
 import UIKit
 import MapKit
+import GoogleMaps
 
 class LocationSearchTableTableViewController: UITableViewController {
     
     var matchingItems:[MKMapItem] = []
+    var matchingGoogleItems:[GooglePlace] = []
     var mapView: MKMapView? = nil
+    var googleMapView: GMSMapView! = nil
+    var coordinate: CLLocationCoordinate2D!
+    var radius: Double = 1000
+    private let dataProvider = GoogleDataProvider()
+    
     var handleMapSearchDelegate:HandleMapSearch? = nil
 
     override func viewDidLoad() {
@@ -52,84 +59,40 @@ class LocationSearchTableTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return matchingItems.count
+        return matchingGoogleItems.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         
-        let selectedItem = matchingItems[indexPath.row].placemark
+        let selectedItem = matchingGoogleItems[indexPath.row]
         cell.textLabel?.text = selectedItem.name
-        cell.detailTextLabel?.text = parseAddress(selectedItem)
+        cell.detailTextLabel?.text = selectedItem.address
         return cell
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let selectedGoogleItem = matchingGoogleItems[indexPath.row]
+        handleMapSearchDelegate?.dropGooglePinZoomIn(place: selectedGoogleItem)
+        dismiss(animated: true, completion: nil)
+        
+        /*
         let selectedItem = matchingItems[indexPath.row].placemark
         handleMapSearchDelegate?.dropPinZoomIn(placemark: selectedItem)
-        dismiss(animated: true, completion: nil)
+        dismiss(animated: true, completion: nil)*/
     }
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
 
 extension LocationSearchTableTableViewController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
-        
-        guard let mapView = mapView,
+        guard let googleMapView = googleMapView,
             let searchBarText = searchController.searchBar.text else {return}
-        let request = MKLocalSearchRequest() // creating the request object
-        request.naturalLanguageQuery = searchBarText // setting the request to the user search
-        request.region = mapView.region // setting the request region to the current visible reg.
         
-        let search = MKLocalSearch(request: request) // initiation of the search request
-        search.start { (response, error) in
-            guard let response = response else { return }
-            self.matchingItems = response.mapItems // sets my array to the array of map items
-            self.tableView.reloadData()
+        self.dataProvider.fetchPlacesNearCoordinate(self.coordinate, radius: self.radius, naturalString: searchBarText) { places in
+                self.matchingGoogleItems = places
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
         }
     }
 }

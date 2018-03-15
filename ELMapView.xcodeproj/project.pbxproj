@@ -19,6 +19,12 @@
 		D462357820583BEE00E21937 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D462357720583BEE00E21937 /* Assets.xcassets */; };
 		D462357B20583BEE00E21937 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D462357920583BEE00E21937 /* LaunchScreen.storyboard */; };
 		D462358320583DA700E21937 /* turnToTechLOGO.png in Resources */ = {isa = PBXBuildFile; fileRef = D462358220583DA700E21937 /* turnToTechLOGO.png */; };
+		D4A7B6632059A64A00D491B3 /* PlaceMarker.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A7B6622059A64A00D491B3 /* PlaceMarker.swift */; };
+		D4A7B6692059A69500D491B3 /* GooglePlace.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A7B6682059A69500D491B3 /* GooglePlace.swift */; };
+		D4A7B66B2059A69800D491B3 /* GoogleDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A7B66A2059A69800D491B3 /* GoogleDataProvider.swift */; };
+		D4A7B6712059A8D500D491B3 /* MarkerInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A7B6702059A8D500D491B3 /* MarkerInfoView.swift */; };
+		D4A7B6732059A8FD00D491B3 /* MarkerInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4A7B6722059A8FD00D491B3 /* MarkerInfoView.xib */; };
+		D4A7B6752059A99200D491B3 /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A7B6742059A99200D491B3 /* UIViewExtension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +42,12 @@
 		D462357A20583BEE00E21937 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D462357C20583BEE00E21937 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D462358220583DA700E21937 /* turnToTechLOGO.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = turnToTechLOGO.png; path = ../../turnToTechLOGO.png; sourceTree = "<group>"; };
+		D4A7B6622059A64A00D491B3 /* PlaceMarker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceMarker.swift; sourceTree = "<group>"; };
+		D4A7B6682059A69500D491B3 /* GooglePlace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GooglePlace.swift; sourceTree = "<group>"; };
+		D4A7B66A2059A69800D491B3 /* GoogleDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleDataProvider.swift; sourceTree = "<group>"; };
+		D4A7B6702059A8D500D491B3 /* MarkerInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkerInfoView.swift; sourceTree = "<group>"; };
+		D4A7B6722059A8FD00D491B3 /* MarkerInfoView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MarkerInfoView.xib; sourceTree = "<group>"; };
+		D4A7B6742059A99200D491B3 /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
 		F565F8393FF4D98D2C25C968 /* Pods_ELMapView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ELMapView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA79A6E0EFDDD198058AF729 /* Pods-ELMapView.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ELMapView.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ELMapView/Pods-ELMapView.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -91,8 +103,10 @@
 			isa = PBXGroup;
 			children = (
 				D462356D20583BEE00E21937 /* AppDelegate.swift */,
+				D4A7B6762059AC5F00D491B3 /* Extensions */,
 				D4A7B65F2059872700D491B3 /* Models */,
 				D4A7B65E2059870C00D491B3 /* View Controllers */,
+				D4A7B6772059AC7300D491B3 /* Views */,
 				D4A7B65D205986FD00D491B3 /* Network */,
 				D462357120583BEE00E21937 /* Main.storyboard */,
 				D462357720583BEE00E21937 /* Assets.xcassets */,
@@ -125,9 +139,29 @@
 		D4A7B65F2059872700D491B3 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				D4A7B6622059A64A00D491B3 /* PlaceMarker.swift */,
+				D4A7B6682059A69500D491B3 /* GooglePlace.swift */,
+				D4A7B66A2059A69800D491B3 /* GoogleDataProvider.swift */,
 				D4170B8120586CEA000EBC6C /* Restaurant.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		D4A7B6762059AC5F00D491B3 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				D4A7B6742059A99200D491B3 /* UIViewExtension.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		D4A7B6772059AC7300D491B3 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				D4A7B6702059A8D500D491B3 /* MarkerInfoView.swift */,
+				D4A7B6722059A8FD00D491B3 /* MarkerInfoView.xib */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -194,6 +228,7 @@
 			files = (
 				D462358320583DA700E21937 /* turnToTechLOGO.png in Resources */,
 				D462357B20583BEE00E21937 /* LaunchScreen.storyboard in Resources */,
+				D4A7B6732059A8FD00D491B3 /* MarkerInfoView.xib in Resources */,
 				D462357820583BEE00E21937 /* Assets.xcassets in Resources */,
 				D462357320583BEE00E21937 /* Main.storyboard in Resources */,
 			);
@@ -264,10 +299,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				D4170B8820596C3D000EBC6C /* Reachability.swift in Sources */,
+				D4A7B66B2059A69800D491B3 /* GoogleDataProvider.swift in Sources */,
 				D4170B8220586CEA000EBC6C /* Restaurant.swift in Sources */,
+				D4A7B6692059A69500D491B3 /* GooglePlace.swift in Sources */,
 				D4170B86205963D3000EBC6C /* WebViewController.swift in Sources */,
+				D4A7B6632059A64A00D491B3 /* PlaceMarker.swift in Sources */,
+				D4A7B6752059A99200D491B3 /* UIViewExtension.swift in Sources */,
 				D462357020583BEE00E21937 /* ViewController.swift in Sources */,
 				D4170B8020585C81000EBC6C /* LocationSearchTableTableViewController.swift in Sources */,
+				D4A7B6712059A8D500D491B3 /* MarkerInfoView.swift in Sources */,
 				D462356E20583BEE00E21937 /* AppDelegate.swift in Sources */,
 				D462357620583BEE00E21937 /* ELMapView.xcdatamodeld in Sources */,
 			);

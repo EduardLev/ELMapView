@@ -9,9 +9,11 @@
 import UIKit
 import CoreLocation
 import MapKit
+import GoogleMaps
 
 protocol HandleMapSearch {
     func dropPinZoomIn(placemark: MKPlacemark)
+    func dropGooglePinZoomIn(place: GooglePlace)
 }
 
 class ViewController: UIViewController {
@@ -19,7 +21,14 @@ class ViewController: UIViewController {
     var locationManager = CLLocationManager()
     var restaurants: [Restaurant] = []
     var dictRestaurants: [String : Restaurant] = [:]
+    private let dataProvider = GoogleDataProvider()
+    private let searchRadius: Double = 1000 // in meters
+    var searchedTypes = ["bakery", "bar", "cafe", "grocery_or_supermarket", "restaurant"]
+    var selectedPlace: GooglePlace?
+    var selectedCoordinate: CLLocationCoordinate2D!
+    var locationSearchTable: LocationSearchTableTableViewController!
     
+    @IBOutlet weak var googleMapView: GMSMapView!
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var turnToTechLOGO: UIImageView!
     var resultsSearchController:UISearchController? = nil
@@ -29,11 +38,13 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        googleMapView.delegate = self
+        
         startStandardUpdates()
         setupMapView()
         addTurnToTechPin()
-        createSearchResultsController()
         addRestaurantPins()
+        createSearchResultsController()
     }
     
     func addRestaurantPins() {
@@ -48,12 +59,11 @@ class ViewController: UIViewController {
             
             dictRestaurants[rest.name] = rest
         }
-        
     }
     
     func createSearchResultsController() {
         // Instantiates the view controller programmatically
-        let locationSearchTable =
+        locationSearchTable =
             storyboard?.instantiateViewController(withIdentifier: "LocationSearchTable") as!
         LocationSearchTableTableViewController
         resultsSearchController = UISearchController(searchResultsController: locationSearchTable)
@@ -70,6 +80,8 @@ class ViewController: UIViewController {
         definesPresentationContext = true
         
         locationSearchTable.mapView = mapView
+        locationSearchTable.googleMapView = googleMapView
+        locationSearchTable.coordinate = self.selectedCoordinate
         locationSearchTable.handleMapSearchDelegate = self
     }
     
@@ -78,7 +90,7 @@ class ViewController: UIViewController {
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.distanceFilter = kCLDistanceFilterNone
         
-        locationManager.requestAlwaysAuthorization()
+        locationManager.requestWhenInUseAuthorization()
         /*if CLLocationManager.locationServicesEnabled() {
          locationManager.startUpdatingLocation()
          }*/
@@ -109,6 +121,29 @@ class ViewController: UIViewController {
         }
     }
     
+    private func reverseGeocodeCoordinate(_ coordinate: CLLocationCoordinate2D) {
+        let geocoder = GMSGeocoder()
+        geocoder.reverseGeocodeCoordinate(coordinate) { response, error in
+            guard let address = response?.firstResult(), let lines = address.lines else {
+                return
+            }
+            let text = lines.joined(separator: "\n")
+            print(text)
+            UIView.animate(withDuration: 0.25) {
+                self.view.layoutIfNeeded()
+            }
+        }
+    }
+
+    private func fetchNearbyPlaces(coordinate: CLLocationCoordinate2D) {
+        googleMapView.clear()
+        dataProvider.fetchPlacesNearCoordinate(coordinate, radius:searchRadius, types: searchedTypes) { places in
+            places.forEach {
+                let marker = PlaceMarker(place: $0)
+                marker.map = self.googleMapView
+            }
+        }
+    }
 }
 
 // CLLocationManagerDelegate
@@ -118,18 +153,23 @@ extension ViewController: CLLocationManagerDelegate {
         print("Error \(error)")
     }
     
-    /*func locationManager(_ manager: CLLocationManager,
-                         didUpdateLocations locations: [CLLocation]) {
-        if let location = locations.last {
-            let latitude = location.coordinate.latitude
-            let longitude = location.coordinate.longitude
-            
-            let center = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
-            let span = MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01)
-            let region = MKCoordinateRegion(center: center, span: span)
-            mapView.setRegion(region, animated:true)
-        }
-    }*/
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        guard status == .authorizedWhenInUse else { return }
+        
+        locationManager.startUpdatingLocation()
+        googleMapView.isMyLocationEnabled = true
+        googleMapView.settings.myLocationButton = true
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        guard let location = locations.first else { return }
+        
+        googleMapView.camera = GMSCameraPosition(target: location.coordinate,
+                                           zoom: 15, bearing:0, viewingAngle: 0)
+        fetchNearbyPlaces(coordinate: location.coordinate)
+        self.locationSearchTable.coordinate = location.coordinate
+        locationManager.stopUpdatingLocation()
+    }
 }
 
 extension ViewController: HandleMapSearch {
@@ -150,6 +190,11 @@ extension ViewController: HandleMapSearch {
         let span = MKCoordinateSpanMake(0.05, 0.05)
         let region = MKCoordinateRegionMake(placemark.coordinate, span)
         mapView.setRegion(region, animated: true)
+    }
+    
+    func dropGooglePinZoomIn(place: GooglePlace) {
+        let marker = PlaceMarker(place: place)
+        marker.map = self.googleMapView
     }
 }
 
@@ -188,10 +233,61 @@ extension ViewController: MKMapViewDelegate {
         //self.present(webViewVC, animated: true, completion: nil)
     }
     
+    @objc func goToGoogleWebsite() {
+        print("this is happening")
+        guard let placeMarker = self.googleMapView.selectedMarker as? PlaceMarker else { return }
+        let selectedString = placeMarker.place.name
+        let selectedStringWithPlus = selectedString.replacingOccurrences(of: " ", with: "+")
+        let selectedURL = "http://www.google.com/search?safe=active&q=\(selectedStringWithPlus)"
+        let webViewVC = WebViewController()
+        webViewVC.urlString = selectedURL
+        self.navigationController?.pushViewController(webViewVC, animated: true)
+    }
+    
     func mapView(_ mapView: MKMapView, didUpdate userLocation: MKUserLocation) {
         let region:MKCoordinateRegion =
             MKCoordinateRegionMakeWithDistance(userLocation.coordinate, 250, 250)
         self.mapView.setRegion(region, animated: true)
+    }
+}
+
+extension ViewController: GMSMapViewDelegate {
+    
+    func mapView(_ mapView: GMSMapView, idleAt position: GMSCameraPosition) {
+        reverseGeocodeCoordinate(position.target)
+        self.locationSearchTable.coordinate = position.target
+    }
+    
+    func mapView(_ mapView: GMSMapView, willMove gesture: Bool) {
+        // code here
+      //      addressLabel.lock()
+        
+    }
+    
+    func mapView(_ mapView: GMSMapView, markerInfoContents marker: GMSMarker) -> UIView? {
+        
+        marker.tracksInfoWindowChanges = true
+        
+        guard let placeMarker = marker as? PlaceMarker else {
+            return nil
+        }
+        
+        guard let infoView = UIView.viewFromNibName("MarkerInfoView") as? MarkerInfoView else {
+            return nil
+        }
+        
+        infoView.nameLabel.text = placeMarker.place.name
+        if let photo = placeMarker.place.photo {
+            infoView.placePhoto.image = photo
+        } else {
+            infoView.placePhoto.image = UIImage(named: "generic")
+        }
+        
+        return infoView
+    }
+    
+    func mapView(_ mapView: GMSMapView, didTapInfoWindowOf marker: GMSMarker) {
+        self.goToGoogleWebsite()
     }
     
 }
