@@ -138,7 +138,7 @@ extension ViewController: HandleMapSearch {
         selectedPin = placemark
         
         //clear existing pins
-        //mapView.removeAnnotations(mapView.annotations)
+        mapView.removeAnnotations(mapView.annotations)
         
         let annotation = MKPointAnnotation()
         annotation.coordinate = placemark.coordinate
@@ -147,9 +147,9 @@ extension ViewController: HandleMapSearch {
             annotation.subtitle = "\(city) \(state)"
         }
         mapView.addAnnotation(annotation)
-        let span = MKCoordinateSpanMake(0.05, 0.05)
+        /*let span = MKCoordinateSpanMake(0.05, 0.05)
         let region = MKCoordinateRegionMake(placemark.coordinate, span)
-        mapView.setRegion(region, animated: true)
+        mapView.setRegion(region, animated: true)*/
     }
 }
 
@@ -179,7 +179,9 @@ extension ViewController: MKMapViewDelegate {
         if let selectedRestaurant = dictRestaurants[selectedAnnotation.title!!] {
             selectedURL = selectedRestaurant.website
         } else {
-            selectedURL = "http://www.turntotech.io"
+            let selectedString = selectedAnnotation.title
+            let inputString = selectedString??.replacingOccurrences(of: " ", with: "+")
+            selectedURL = "https://www.google.com/search?safe=active&q=\(inputString!)"
         }
     
         let webViewVC = WebViewController()
@@ -192,6 +194,7 @@ extension ViewController: MKMapViewDelegate {
         let region:MKCoordinateRegion =
             MKCoordinateRegionMakeWithDistance(userLocation.coordinate, 250, 250)
         self.mapView.setRegion(region, animated: true)
+        self.locationManager.stopUpdatingLocation()
     }
     
 }
