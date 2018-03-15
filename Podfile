@@ -8,5 +8,6 @@ target 'ELMapView' do
   # Pods for ELMapView
   pod 'SwiftyJSON'
   pod 'GoogleMaps'
+  pod 'SwiftLint'
 
 end

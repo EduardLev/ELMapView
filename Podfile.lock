@@ -4,16 +4,19 @@ PODS:
   - GoogleMaps/Base (2.6.0)
   - GoogleMaps/Maps (2.6.0):
     - GoogleMaps/Base
+  - SwiftLint (0.25.0)
   - SwiftyJSON (4.0.0)
 
 DEPENDENCIES:
   - GoogleMaps
+  - SwiftLint
   - SwiftyJSON
 
 SPEC CHECKSUMS:
   GoogleMaps: 42f91c68b7fa2f84d5c86597b18ceb99f5414c7f
+  SwiftLint: e14651157288e9e01d6e1a71db7014fb5744a8ea
   SwiftyJSON: 070dabdcb1beb81b247c65ffa3a79dbbfb3b48aa
 
-PODFILE CHECKSUM: a4ad757e094a99f2e2f9f886bf69035041fd76a9
+PODFILE CHECKSUM: a957680cd0226971a327488c7a583b45b4b20a23
 
 COCOAPODS: 1.4.0

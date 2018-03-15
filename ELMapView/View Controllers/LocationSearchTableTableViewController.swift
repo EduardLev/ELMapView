@@ -10,10 +10,10 @@ import UIKit
 import MapKit
 
 class LocationSearchTableTableViewController: UITableViewController {
-    
-    var matchingItems:[MKMapItem] = []
-    var mapView: MKMapView? = nil
-    var handleMapSearchDelegate:HandleMapSearch? = nil
+
+    var matchingItems: [MKMapItem] = []
+    var mapView: MKMapView?
+    var handleMapSearchDelegate: HandleMapSearch?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,7 +24,7 @@ class LocationSearchTableTableViewController: UITableViewController {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
-    
+
     func parseAddress(_ selectedItem: MKPlacemark) -> String {
         let firstSpace = (selectedItem.subThoroughfare != nil && selectedItem.thoroughfare != nil)
             ? " " : ""
@@ -33,7 +33,7 @@ class LocationSearchTableTableViewController: UITableViewController {
             ? ", " : ""
         let secondSpace = (selectedItem.subAdministrativeArea != nil &&
             selectedItem.administrativeArea != nil) ? " " : ""
-        let addressLine = String(format:"%@%@%@%@%@%@%@", selectedItem.subThoroughfare ?? "",
+        let addressLine = String(format: "%@%@%@%@%@%@%@", selectedItem.subThoroughfare ?? "",
             firstSpace, selectedItem.thoroughfare ?? "", comma, selectedItem.locality ?? "",
             secondSpace, selectedItem.administrativeArea ?? ""
         )

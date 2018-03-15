@@ -45,10 +45,8 @@ class ViewController: UIViewController {
             annotation.title = rest.name
             annotation.subtitle = rest.address
             self.mapView.addAnnotation(annotation)
-            
             dictRestaurants[rest.name] = rest
         }
-        
     }
     
     func createSearchResultsController() {
@@ -92,6 +90,7 @@ class ViewController: UIViewController {
     
     func addTurnToTechPin() {
         // Place a single pin
+        
         let annotation = MKPointAnnotation()
         annotation.coordinate = CLLocationCoordinate2D(latitude: 40.7084896,
                                                        longitude: -74.0147607)
@@ -108,7 +107,6 @@ class ViewController: UIViewController {
         default: break
         }
     }
-    
 }
 
 // CLLocationManagerDelegate
@@ -160,14 +158,28 @@ extension ViewController: MKMapViewDelegate {
             // return nil so map view draws "blue dot" for standard user location
             return nil
         }
-
+        var selectedRestaurant: Restaurant
+        var selectedImageString: String?
+        for rest in restaurants {
+            if rest.name == annotation.title!! {
+                selectedRestaurant = rest
+                selectedImageString = selectedRestaurant.image
+            }
+        }
+        
+        
         var pinView = mapView.dequeueReusableAnnotationView(withIdentifier: "pin")
         pinView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: "pin")
         pinView?.tintColor = .orange
         pinView?.canShowCallout = true
         let smallSquare = CGSize(width: 30, height: 30)
         let button = UIButton(frame: CGRect(origin: CGPoint(), size:smallSquare))
-        button.setBackgroundImage(UIImage(named: "World"), for: .normal)
+        
+        if let selectedImageString = selectedImageString {
+            button.setBackgroundImage(UIImage(named: selectedImageString), for: .normal)
+        } else {
+            button.setBackgroundImage(UIImage(named: "World"), for: .normal)
+        }
         button.addTarget(self, action: #selector(goToWebsite), for: .touchUpInside)
         pinView?.leftCalloutAccessoryView = button
         return pinView
