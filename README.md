@@ -11,7 +11,7 @@ websites, which are hard-coded. Uses Google Maps API to show the maps, and Googl
 
 ## Using
 
-![Alt Text](https://github.com/EduardLev/ELBrickBreakerMiniTTT/raw/master/ELBrickBreakDemoTTT.gif)
+![Alt Text](https://github.com/EduardLev/ELMapView/raw/master/ELMapViewTTT.gif)
 
 ## Acknowledgments
 
